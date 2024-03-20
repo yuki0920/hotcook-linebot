@@ -1,0 +1,4 @@
+export ENV=""
+export NGROK_AUTHTOKEN=""
+export LINE_CHANNEL_ACCESS_TOKEN=""
+export LINE_CHANNEL_SECRET=""

@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.11"
 line-bot-sdk = "^3.9.0"
 flask = "^3.0.2"
+ngrok = "^1.2.0"
 
 
 [build-system]
