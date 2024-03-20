@@ -57,9 +57,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
-    app.logger.info(f"Received message: {event.message.text}")
+    message = event.message.text
+    app.logger.info(f"Received message: {message}")
 
-    answer = call_gpt()
+    answer = call_gpt(message)
 
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)

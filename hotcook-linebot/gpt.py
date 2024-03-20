@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 logger.info("Starting the app")
 
-def call_gpt():
+def call_gpt(recipe):
     llm = ChatOpenAI(
           model=OPENAI_API_MODEL,
           temperature=OPENAI_API_TEMPERATURE,
@@ -47,7 +47,7 @@ def call_gpt():
     retriever = vectorstore.as_retriever()
 
     retrieval_chain = create_retrieval_chain(retriever, document_chain)
-    response = retrieval_chain.invoke({"input": "鶏肉"})
+    response = retrieval_chain.invoke({"input": recipe})
     answer = response["answer"]
     logger.info("Answer: %s", answer)
 
