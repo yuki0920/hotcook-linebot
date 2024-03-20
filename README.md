@@ -10,5 +10,5 @@ poetry config virtualenvs.in-project true --local
 poetry install
 
 # run
-poetry run python hotcoo-linebot/main.py
+poetry run python hotcook-linebot/main.py
 ```
