@@ -9,6 +9,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 
 CHAT_UPDATE_INTERVAL_SEC = 1
 OPENAI_API_TEMPERATURE = 0.5
+# OPENAI_API_MODEL="gpt-3.5-turbo-0125"
+OPENAI_API_MODEL="gpt-4-0125-preview"
 
 # ログ
 logging.basicConfig(
@@ -20,7 +22,7 @@ logger.info("Starting the app")
 
 def call_gpt():
     llm = ChatOpenAI(
-          model=os.environ["OPENAI_API_MODEL"],
+          model=OPENAI_API_MODEL,
           temperature=OPENAI_API_TEMPERATURE,
     )
 
@@ -50,7 +52,3 @@ def call_gpt():
     logger.info("Answer: %s", answer)
 
     return answer
-
-
-if __name__ == "__main__":
-    call_gpt()
