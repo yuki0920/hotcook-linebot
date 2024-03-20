@@ -7,6 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+line-bot-sdk = "^3.9.0"
+flask = "^3.0.2"
 
 
 [build-system]
