@@ -1,6 +1,4 @@
-import logging
-import os
-
+from logger import get_logger
 from vector_store import initialize_vectorstore
 from langchain.chains import create_retrieval_chain
 from langchain_core.prompts import ChatPromptTemplate
@@ -12,13 +10,7 @@ OPENAI_API_TEMPERATURE = 0.5
 # OPENAI_API_MODEL="gpt-3.5-turbo-0125"
 OPENAI_API_MODEL="gpt-4-0125-preview"
 
-# ログ
-logging.basicConfig(
-    format="%(asctime)s [%(levelname)s] %(message)s", level=logging.INFO
-)
-logger = logging.getLogger(__name__)
-
-logger.info("Starting the app")
+logger = get_logger()
 
 def call_gpt(recipe):
     llm = ChatOpenAI(
