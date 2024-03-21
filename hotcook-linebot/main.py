@@ -81,4 +81,4 @@ if __name__ == "__main__":
     if os.getenv("ENV") == "development":
         forward()
 
-    app.run(port=port)
+    app.run(debug=True, host="0.0.0.0", port=port)
