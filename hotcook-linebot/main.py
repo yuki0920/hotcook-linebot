@@ -1,5 +1,6 @@
 import os
 
+from logger import get_logger
 from gpt import call_gpt
 
 from flask import Flask, request, abort
@@ -24,6 +25,8 @@ from linebot.v3.webhooks import (
     TextMessageContent
 )
 
+logger = get_logger()
+
 app = Flask(__name__)
 
 
@@ -43,13 +46,13 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    logger.info(f"Request body: {body}")
 
     # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
-        app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
+        logger.info("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
 
     return 'OK'
@@ -58,7 +61,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
     message = event.message.text
-    app.logger.info(f"Received message: {message}")
+    logger.info(f"Received message: {message}")
 
     answer = call_gpt(message)
 
@@ -74,11 +77,11 @@ def handle_message(event):
 
 def forward():
     listener = ngrok.forward(port, authtoken_from_env=True)
-    print(f"Ingress established at {listener.url()}")
+    logger.info(f"Ingress established at {listener.url()}")
 
 
 if __name__ == "__main__":
     if os.getenv("ENV") == "development":
         forward()
 
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port)
