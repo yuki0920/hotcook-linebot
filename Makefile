@@ -1,10 +1,10 @@
 .PHONY: run
 run:
-	@poetry run python hootcook-linebot/main.py
+	@poetry run python hotcook-linebot/main.py
 
 .PHONY: deploy
 deploy:
-	@gcloud run deploy hootcook-linebot \
+	@gcloud run deploy hotcook-linebot \
 		--source=. \
 		--no-cpu-throttling \
 		--project=${GCP_PROJECT_ID} \
