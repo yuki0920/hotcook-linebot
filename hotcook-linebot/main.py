@@ -76,7 +76,14 @@ def handle_message(event):
 
 
 def forward():
-    listener = ngrok.forward(port, authtoken_from_env=True)
+    # 固定ドメインの指定は有料プランのみのため、エラーになった場合ドメインの指定を削除して変動のドメインを利用する
+    domain = os.getenv("NGROK_DOMAIN")
+
+    listener = ngrok.forward(
+        port,
+        domain=domain,
+        authtoken_from_env=True
+    )
     logger.info(f"Ingress established at {listener.url()}")
 
 
