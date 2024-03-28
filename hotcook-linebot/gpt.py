@@ -6,8 +6,8 @@ from langchain_openai import ChatOpenAI
 from langchain.chains.combine_documents import create_stuff_documents_chain
 
 OPENAI_API_TEMPERATURE = 0.1
-OPENAI_API_MODEL="gpt-3.5-turbo-0125"
-# OPENAI_API_MODEL="gpt-4-0125-preview"
+# OPENAI_API_MODEL="gpt-3.5-turbo-0125"
+OPENAI_API_MODEL="gpt-4-0125-preview"
 
 logger = get_logger()
 
